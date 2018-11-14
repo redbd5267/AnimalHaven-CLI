@@ -1,6 +1,2 @@
-require "eventbrite/version"
-
-module Eventbrite
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./eventbrite/version"
+require_relative './eventbrite/cli'

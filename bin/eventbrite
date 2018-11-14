@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
 
-puts "hello"
+require './lib/eventbrite'
+Eventbrite::CLI.new.call
