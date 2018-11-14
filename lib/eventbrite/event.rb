@@ -3,6 +3,14 @@ class Eventbrite::Event
   attr_accessor :title, :time, :location, :price
   
   def self.today
+    self.scrape_events
+  end
+  
+  def self.scrape_events
+    events = []
+    
+    events << self.scrape_eventbrite
+    
     event_1 = self.new 
     event_1.title = "Event 1"
     event_1.time = "6PM"
@@ -15,7 +23,11 @@ class Eventbrite::Event
     event_2.location = "work"
     event_2.price = "$50"
     
-    [event_1, event_2]
+    events
   end
-
+  
+  def self.scrape_eventbrite
+    doc = Nokogiri::HTML(open("https://www.eventbrite.com/d/ny--new-york/events--today/"))
+    binding.pry
+  end
 end
