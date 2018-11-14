@@ -8,10 +8,7 @@ class Eventbrite::CLI
   
   def list_events
     puts "Events in New York Today:"
-    puts <<-DOC.gsub /^\s*/, ''
-      1. Event 1
-      2. Event 2
-    DOC
+    @events = Eventbrite::Event.today
   end
   
   def menu
