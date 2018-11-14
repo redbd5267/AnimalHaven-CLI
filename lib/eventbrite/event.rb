@@ -3,11 +3,6 @@ class Eventbrite::Event
   attr_accessor :title, :time, :location, :price
   
   def self.today
-    # puts <<-DOC.gsub /^\s*/, ''
-    #   1. Event 1
-    #   2. Event 2
-    # DOC
-    
     event_1 = self.new 
     event_1.title = "Event 1"
     event_1.time = "6PM"

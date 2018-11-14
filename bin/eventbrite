@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/eventbrite'
+require "bundler/setup"
+require "eventbrite"
+
 Eventbrite::CLI.new.call
