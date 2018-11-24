@@ -1,38 +1,39 @@
-class Eventbrite::CLI
+class AnimalHaven::CLI
   
   def call
-    list_events
+    list_deals
     menu
     goodbye
   end
-  
-  def list_events
-    puts "Events in New York Today:"
-    @events = Eventbrite::Event.today
-    @events.each.with_index(1) do |event, i|
-      puts "#{i}. #{event.title} - #{event.time} - #{event.location}"
+
+  def list_deals
+    # here doc - http://blog.jayfields.com/2006/12/ruby-multiline-strings-here-doc-or.html
+    puts "Today's Daily Deals:"
+    @deals = AnimalHaven::Event.today
+    @deals.each.with_index(1) do |deal, i|
+      puts "#{i}. #{deal.name} - #{deal.price} - #{deal.availability}"
     end
   end
-  
+
   def menu
     input = nil
     while input != "exit"
-      puts "Enter the number of the event you'd like more info on, or type list to see the full list of events, or type exit:"
+      puts "Enter the number of the deal you'd like more info on or type list to see the deals again or type exit:"
       input = gets.strip.downcase
-      
+
       if input.to_i > 0
-        puts @events[input.to_i - 1]
+        the_deal = @deals[input.to_i-1]
+        puts "#{the_deal.name} - #{the_deal.price} - #{the_deal.availability}"
       elsif input == "list"
-        list_events
-      else 
-        puts "Not sure, pick again from the list below"
-        list_events
+        list_deals
+      else
+        puts "Not sure what you want, type list or exit."
       end
     end
   end
-  
-  def goodbye 
-    puts "see u tm for tms events"
+
+  def goodbye
+    puts "See you tomorrow for more deals!!!"
   end
-  
+
 end

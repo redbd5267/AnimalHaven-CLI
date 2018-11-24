@@ -5,7 +5,7 @@ require "eventbrite/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "eventbrite"
-  spec.version       = Eventbrite::VERSION
+  spec.version       = AnimalHaven::VERSION
   spec.authors       = ["'Fatama Rahman'"]
   spec.email         = ["'fatamarahman@gmail.com'"]
 

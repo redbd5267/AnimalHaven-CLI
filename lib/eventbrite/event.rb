@@ -1,33 +1,29 @@
-class Eventbrite::Event
-  
-  attr_accessor :title, :time, :location, :price
-  
+class AnimalHaven::Event
+  attr_accessor :name, :price, :availability, :url
+
   def self.today
-    self.scrape_events
+    # Scrape woot and meh and then return deals based on that data
+    self.scrape_deals
   end
-  
-  def self.scrape_events
-    events = []
-    
-    events << self.scrape_eventbrite
-    
-    event_1 = self.new 
-    event_1.title = "Event 1"
-    event_1.time = "6PM"
-    event_1.location = "Home"
-    event_1.price = "$100"
-    
-    event_2 = self.new 
-    event_2.title = "Event 2"
-    event_2.time = "12PM"
-    event_2.location = "work"
-    event_2.price = "$50"
-    
-    events
+
+  def self.scrape_deals
+    deals = []
+
+    deals << self.scrape_woot
+
+    deals
   end
-  
-  def self.scrape_eventbrite
-    doc = Nokogiri::HTML(open("https://www.eventbrite.com/d/ny--new-york/events--today/"))
-    binding.pry
+
+  def self.scrape_woot
+    doc = Nokogiri::HTML(open("https://www.animalhavenshelter.org/adopt/dogs/"))
+
+    deal = self.new
+    deal.name = doc.search("div.box-info h4").text.strip
+    # deal.price = doc.search("#todays-deal span.price").text.strip
+    # deal.url = doc.search("a.wantone").first.attr("href").strip
+    # deal.availability = true
+
+    deal
   end
+
 end
