@@ -1,17 +1,16 @@
 class AnimalHaven::CLI
   
   def call
-    list_deals
+    list_dogs
     menu
     goodbye
   end
 
-  def list_deals
-    # here doc - http://blog.jayfields.com/2006/12/ruby-multiline-strings-here-doc-or.html
-    puts "Today's Daily Deals:"
-    @deals = AnimalHaven::Event.today
-    @deals.each.with_index(1) do |deal, i|
-      puts "#{i}. #{deal.name} - #{deal.price} - #{deal.availability}"
+  def list_dogs
+    puts "Dogs Available for Adoption:"
+    @dogs = AnimalHaven::Animal.today
+    @dogs.each.with_index(1) do |dog, i|
+      puts "#{i}. #{dog.name}"
     end
   end
 
@@ -22,10 +21,10 @@ class AnimalHaven::CLI
       input = gets.strip.downcase
 
       if input.to_i > 0
-        the_deal = @deals[input.to_i-1]
-        puts "#{the_deal.name} - #{the_deal.price} - #{the_deal.availability}"
+        the_dog = @dogs[input.to_i-1]
+        puts "#{the_dog.name} - #{the_dog.price} - #{the_dog.availability}"
       elsif input == "list"
-        list_deals
+        list_dogs
       else
         puts "Not sure what you want, type list or exit."
       end

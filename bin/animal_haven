@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "eventbrite"
+require "animal_haven"
 
 AnimalHaven::CLI.new.call
