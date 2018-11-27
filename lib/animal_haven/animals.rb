@@ -3,6 +3,7 @@ class AnimalHaven::Animal
 
   def self.today
     self.scrape_animalHaven
+    self.scrape_hrefs
   end
 
   def self.scrape_animalHaven
@@ -15,8 +16,14 @@ class AnimalHaven::Animal
     doc = Nokogiri::HTML(open("https://www.animalhavenshelter.org/adopt/dogs/"))
     
     dog = self.new
-    dog.name = doc.search("div.box-info h4").text.strip
+    doc.search("div.box-info h4").each.with_index do |eachDog, i|
+      puts "#{eachDog.text}"
+    end
     dog
+  end
+  
+  def self.scrape_hrefs
+    binding.pry
   end
 
 end
