@@ -9,9 +9,9 @@ class AnimalHaven::CLI
   def list_dogs
     puts "Dogs Available for Adoption:"
     @dogs = AnimalHaven::Animal.today
-    @dogs.each.with_index(1) do |dog, i|
-      puts "#{i}. #{dog.name} - #{dog.age} - #{dog.gender}"
-    end
+    # @dogs.each.with_index(1) do |dog, i|
+    #   puts "#{i}. #{dog.name} - #{dog.age} - #{dog.gender}"
+    # end
   end
 
   def menu
